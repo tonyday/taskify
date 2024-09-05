@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   def index
-    @tasks = Task.all
+    @tasks = Task.order(created_at: :desc)
     @task = Task.new
   end
 
@@ -11,7 +11,19 @@ class TasksController < ApplicationController
       if @task.save
         format.html { redirect_to tasks_url, notice: "Task was successfully created" }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { redirect_to tasks_url, alert: @task.errors.full_messages.join("\n") }
+      end
+    end
+  end
+
+  def update
+    @task = Task.find(params[:id])
+
+    respond_to do |format|
+      if @task.update(task_params)
+        format.html { redirect_to tasks_url, notice: "Task was successfully updated" }
+      else
+        format.html { redirect_to tasks_url, alert: @task.errors.full_messages.join("\n") }
       end
     end
   end
@@ -19,6 +31,6 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:description)
+    params.require(:task).permit(:description, :completed)
   end
 end
