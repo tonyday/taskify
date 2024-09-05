@@ -23,10 +23,25 @@ class TasksController < ApplicationController
       if @task.update(task_params)
         format.html { redirect_to tasks_url, notice: "Task was successfully updated" }
       else
-        format.html { redirect_to tasks_url, alert: @task.errors.full_messages.join("\n") }
+        format.html do
+          flash.now[:alert] = @task.errors.full_messages.join("\n")
+          render :edit, status: :unprocessable_entity
+        end
       end
     end
   end
+
+  def edit
+    @task = Task.find(params[:id])
+  end
+
+  def destroy
+    @task = Task.find(params[:id])
+    @task.destroy
+    redirect_to tasks_url, notice: "Post was successfully deleted."
+  end
+
+
 
   private
 
