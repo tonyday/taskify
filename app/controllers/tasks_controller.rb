@@ -38,10 +38,11 @@ class TasksController < ApplicationController
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
-    redirect_to tasks_url, notice: "Post was successfully deleted."
+    respond_to do |f|
+      f.turbo_stream { render turbo_stream: turbo_stream.remove(@task) }
+      f.html { redirect_to tasks_url, notice: "Post was successfully deleted." }
+    end
   end
-
-
 
   private
 

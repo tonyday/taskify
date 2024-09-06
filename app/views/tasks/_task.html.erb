@@ -1,5 +1,5 @@
-<div class="block">
-  <%= form_with(model: task, class: "inline-block my-3 text-lg w-72") do |form| %>
+<turbo-frame id="<%= dom_id task %>" class="block">
+<%= form_with(model: task, class: "inline-block my-3 text-lg w-24") do |form| %>
     <%= form.check_box :completed,
                        onchange: "this.form.requestSubmit()",
                        class: "align-middle bg-gray-50 border-gray-300 checked:bg-green-500 focus:ring-3 focus:ring-blue-300 h-5 mr-2 rounded w-5" %>
@@ -14,4 +14,4 @@
                   method: :delete,
                   class: "btn bg-red-100" %>
   </div>
-</div>
+</turbo-frame>
