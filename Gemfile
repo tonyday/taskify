@@ -61,3 +61,7 @@ gem "tailwindcss-rails", "~> 2.7"
 # Address issue with Github CI jobs as described here
 # https://discuss.rubyonrails.org/t/rails-7-dockerfile-build-fails/86041/2
 gem "net-pop", github: "ruby/net-pop"
+
+# Some nice icons
+# https://github.com/carlweis/heroicon-rails
+gem "heroicon-rails", "~> 0.2.9"

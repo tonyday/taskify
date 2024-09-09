@@ -1,17 +1,17 @@
 <turbo-frame id="<%= dom_id task %>" class="block">
-<%= form_with(model: task, class: "inline-block my-3 text-lg w-24") do |form| %>
+  <%= form_with(model: task, class: "inline-block my-3 text-lg w-8/12") do |form| %>
     <%= form.check_box :completed,
                        onchange: "this.form.requestSubmit()",
                        class: "align-middle bg-gray-50 border-gray-300 checked:bg-green-500 focus:ring-3 focus:ring-blue-300 h-5 mr-2 rounded w-5" %>
     <%= tag.span task.description, class: task.completed ? "line-through" : "" %>
   <% end %>
 
-  <%= link_to "Edit", edit_task_path(task),
-              class: "btn bg-gray-100"
-  %>
+  <%= link_to(edit_task_path(task)) do %>
+    <%= heroicon "pencil-square", class: "inline" %>
+  <% end %>
   <div class="inline-block ml-2">
-    <%= button_to "Delete", task_path(task),
-                  method: :delete,
-                  class: "btn bg-red-100" %>
+    <%= button_to(task_path(task), method: :delete) do %>
+      <%= heroicon "trash", class: "inline" %>
+    <% end %>
   </div>
 </turbo-frame>
