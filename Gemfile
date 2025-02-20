@@ -56,7 +56,7 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem "tailwindcss-rails", "~> 3.0"
+gem "tailwindcss-rails", "~> 4.1"
 
 # Address issue with Github CI jobs as described here
 # https://discuss.rubyonrails.org/t/rails-7-dockerfile-build-fails/86041/2
